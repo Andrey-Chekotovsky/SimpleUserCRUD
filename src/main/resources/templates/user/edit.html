@@ -5,7 +5,7 @@
     <title>edit</title>
 </head>
 <body>
-<form th:method="POST" th:action="@{/user/{id}(id=${user.getId()})}" th:object="${user}">
+<form th:method="POST" th:action="@{/user/update/{id}(id=${user.getId()})}" th:object="${user}">
     <label for="firstName">First name: </label>
     <input type="text" th:field="*{firstName}" id="firstName"/>
     <div th:if="${#fields.hasErrors('firstName')}" th:errors = "*{firstName}">FirstName error</div>
