@@ -1,6 +1,7 @@
 package com.checkotovsky.SimpleUserCRUD.dao;
 
 import com.checkotovsky.SimpleUserCRUD.Models.User;
+import com.checkotovsky.SimpleUserCRUD.Security.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,12 @@ public class UserDAO {
     {
         return jdbcTemplate.query("SELECT * FROM users WHERE user_id = ?;", new Object[]{id},
                 new UserMapper()).stream().findAny().orElse(null);
+    }
+    public UserDetails selectByUsername(String username)
+    {
+        return new UserDetails(jdbcTemplate.query(
+                "SELECT * FROM users WHERE username = ?;", new Object[]{username},
+                new UserMapper()).stream().findAny().orElse(null));
     }
     public void update(User user, int id)
     {

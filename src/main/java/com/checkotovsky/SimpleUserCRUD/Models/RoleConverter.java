@@ -13,9 +13,9 @@ public class RoleConverter implements AttributeConverter<Role, String> {
 
         switch (role) {
             case Customer:
-                return "Customer";
+                return "ROLE_CUSTOMER";
             case Admin:
-                return "Admin";
+                return "ROLE_ADMIN";
             default:
                 throw new IllegalArgumentException(role + " not supported.");
         }
@@ -25,9 +25,9 @@ public class RoleConverter implements AttributeConverter<Role, String> {
     public Role convertToEntityAttribute(String dbData) {
         if (dbData == null)
             return null;
-        if(dbData.equals("Customer"))
+        if(dbData.equals("ROLE_CUSTOMER"))
             return Role.Customer;
-        else if(dbData.equals("Admin"))
+        else if(dbData.equals("ROLE_ADMIN"))
             return Role.Admin;
         else
             throw new IllegalArgumentException(dbData + " not supported.");

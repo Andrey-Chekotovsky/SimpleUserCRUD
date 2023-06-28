@@ -11,7 +11,11 @@
     <br/>
     <hr/>
 
-    <a href="/user/add">Create new person</a>
+    <a th:if="${authenticatedUser.roleToString()} == 'ROLE_ADMIN'" href="/user/addAdmin">Create new person</a>
+    <br/>
+    <form th:action="@{/perform_logout}" th:method="POST">
+        <input type="submit" value="Logout">
+    </form>
 </div>
 </body>
 </html>

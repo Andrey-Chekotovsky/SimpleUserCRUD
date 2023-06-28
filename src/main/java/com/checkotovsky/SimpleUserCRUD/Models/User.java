@@ -5,7 +5,6 @@ import com.checkotovsky.SimpleUserCRUD.Validation.ValidPassword;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "users")
@@ -34,6 +33,7 @@ public class User {
     @Column(name = "user_role", updatable = true)
     @Convert(converter = RoleConverter.class)
     private Role role = Role.Customer;
+
 
     public int getId() {
         return id;
@@ -85,15 +85,15 @@ public class User {
     public String roleToString()
     {
         return switch (role) {
-            case Admin -> "Admin";
-            case Customer -> "Customer";
+            case Admin -> "ROLE_ADMIN";
+            case Customer -> "ROLE_CUSTOMER";
         };
     }
     public void setRoleWithString(String str)
     {
         switch (str) {
-            case "Admin": role = Role.Customer; break;
-            case "Customer": role = Role.Admin; break;
+            case "ROLE_ADMIN": role = Role.Customer; break;
+            case "ROLE_CUSTOMER": role = Role.Admin; break;
             default: role = Role.Customer; break;
         }
     }
